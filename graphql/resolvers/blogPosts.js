@@ -24,6 +24,38 @@ module.exports = {
 			const post = args.input;
 			const res = await BlogPost.create(post);
 			return res;
+		},
+		async updateBlogPost(_, args) {
+			try {
+				const post = args.input;
+				const res = await BlogPost.updateOne(
+					{
+						_id: args.id
+					},
+					{
+						$set: {...post}
+					});
+				return res;
+			} catch(err) {
+				throw new Error(err);
+			}
+		},
+		async deleteBlogPost(_, args) {
+			try{
+				const post = await Query.getBlogPost(args.id);
+				const res = await BlogPost.deleteOne(post);
+				return res;
+			} catch(err) {
+				throw new Error(err);
+			}
+		},
+		async deleteBlogPost(_, args) {
+			try {
+				const res = await BlogPost.findOneAndDelete({_id: args.id});
+				return res;
+			} catch(err) {
+				throw new Error(err);
+			}
 		}
 	}
 }

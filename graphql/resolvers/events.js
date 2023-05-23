@@ -21,9 +21,36 @@ module.exports = {
 	},
 	Mutation: {
 		async createEvent(_, args) {
-			const event = args.input;
-			const res = await Event.create(event);
-			return res;
+			try {
+				const event = args.input;
+				const res = await Event.create(event);
+				return res;
+			} catch(err) {
+				throw new Error(err);
+			}
+		},
+		async updateEvent(_, args) {
+			try {
+				const event = args.input;
+				const res = await Event.updateOne(
+					{
+						_id: args.id
+					},
+					{
+						$set: {...event}
+					});
+				return res;
+			} catch(err) {
+				throw new Error(err);
+			}
+		},
+		async deleteEvent(_, args) {
+			try {
+				const res = await Event.findOneAndDelete({_id: args.id});
+				return res;
+			} catch(err) {
+				throw new Error(err);
+			}
 		}
 	}
 }

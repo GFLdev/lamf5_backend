@@ -21,21 +21,36 @@ module.exports = {
 	},
 	Mutation: {
 		async createMember(_, args) {
-			const member = args.input;
-			const res = await Member.create(member);
-			return res;
+			try {
+				const member = args.input;
+				const res = await Member.create(member);
+				return res;
+			} catch(err) {
+				throw new Error(err);
+			}
 		},
 		async updateMember(_, args) {
-			const member = args.input;
-			console.log(_id);
-			const res = await Member.updateOne(
-				{
-					_id: args.id
-				},
-				{
-					$set: {...member}
-				});
-			return res;
+			try {
+				const member = args.input;
+				const res = await Member.updateOne(
+					{
+						_id: args.id
+					},
+					{
+						$set: {...member}
+					});
+				return res;
+			} catch(err) {
+				throw new Error(err);
+			}
+		},
+		async deleteMember(_, args) {
+			try {
+				const res = await Member.findOneAndDelete({_id: args.id});
+				return res;
+			} catch(err) {
+				throw new Error(err);
+			}
 		}
 	}
 }

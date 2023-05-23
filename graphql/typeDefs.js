@@ -58,10 +58,14 @@ const typeDefs = gql`
 		position: Position!
 	}
 
+	input MemberInput {
+		id: ID!
+	}
+
 	input CreateBlogPostInput {
 		title: String!
 		updatedAt: String!
-		authors: [Member!]!
+		authors: [MemberInput!]!
 		content: String!
 		image: String
 		refs: [String!]
@@ -74,7 +78,7 @@ const typeDefs = gql`
 		local: String!
 		date: String!
 		linkToSubscribe: String
-		image: String	
+		image: String
 	}
 
 	input UpdateMemberInput {
@@ -100,6 +104,7 @@ const typeDefs = gql`
 		linkToSubscribe: String
 		image: String	
 	}
+
 	type Mutation {
 		createEvent(input: CreateEventInput!): Event!
 		createBlogPost(input: CreateBlogPostInput!): BlogPost!
@@ -107,6 +112,9 @@ const typeDefs = gql`
 		updateEvent(input: UpdateEventInput!, id: ID!): Event!
 		updateBlogPost(input: UpdateBlogPostInput!, id: ID!): BlogPost!
 		updateMember(input: UpdateMemberInput!, id: ID!): Member!
+		deleteEvent(id: ID!): Event!
+		deleteBlogPost(id: ID!): BlogPost!
+		deleteMember(id: ID!): Member!
 	}
 `
 

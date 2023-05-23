@@ -1,4 +1,4 @@
-[![LAMF5](./assets/logo.png)](https://lamf5.vercel.app/)
+[<img src="./assets/logo.png" alt="LAMF5" width="60%" />](https://lamf5.vercel.app/)
 
 <p align="center">
   <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=8257E6&labelColor=121214" alt="License">
@@ -19,13 +19,13 @@ Implemented technologies:
 
 Install node dependencies:
 
-    ``` bash
-    npm install
+    ```bash
+    $ npm install
     ```
 
 Configure the database creating a config.js:
 
-    ``` javascript
+    ```javascript
     module.exports = {
       "MONGODBPROD": $prod_url,
       "MONGODBTEST": $test_url,
@@ -36,7 +36,7 @@ Configure the database creating a config.js:
 Start the backend:
 
     ```bash
-    npm start
+    $ npm start
     ```
 
 ---
