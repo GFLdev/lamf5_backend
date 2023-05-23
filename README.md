@@ -15,6 +15,30 @@ Implemented technologies:
 - [Mongoose](https://mongoosejs.com/)
 - [Apollo Server](https://www.apollographql.com)
 
+## Build
+
+Install node dependencies:
+
+    ``` bash
+    npm install
+    ```
+
+Configure the database creating a config.js:
+
+    ``` javascript
+    module.exports = {
+      "MONGODBPROD": $prod_url,
+      "MONGODBTEST": $test_url,
+      "PORT": $port_number
+    }
+    ```
+
+Start the backend:
+
+    ```bash
+    npm start
+    ```
+
 ---
 
 <p align="center">Developed by Gabriel Franco</p>
