@@ -1,0 +1,24 @@
+{
+  "name": "lamf5_backend",
+  "version": "1.0.0",
+  "description": "LAMF5's Website backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabFrancoL/lamf5_backend.git"
+  },
+  "author": "Gabriel Franco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GabFrancoL/lamf5_backend/issues"
+  },
+  "homepage": "https://github.com/GabFrancoL/lamf5_backend#readme",
+  "dependencies": {
+    "apollo-server": "^3.12.0",
+    "graphql": "^16.6.0",
+    "mongoose": "^7.2.0"
+  }
+}
