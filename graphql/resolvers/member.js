@@ -2,6 +2,7 @@ const Member = require("../../models/Member");
 
 module.exports = {
 	Query: {
+		// Get members list
 		async getAllMembers() {
 			try {
 				const members = await Member.find({});
@@ -10,6 +11,7 @@ module.exports = {
 				throw new Error(err);
 			}
 		},
+		// Get one member by id
 		async getMember(_, args) {
 			try {
 				const member = await Member.findOne({_id: args.id});
@@ -20,6 +22,7 @@ module.exports = {
 		}
 	},
 	Mutation: {
+		// Create a new member
 		async createMember(_, args) {
 			try {
 				const member = args.input;
@@ -29,6 +32,7 @@ module.exports = {
 				throw new Error(err);
 			}
 		},
+		// Update a member by id
 		async updateMember(_, args) {
 			try {
 				const member = args.input;
@@ -44,6 +48,7 @@ module.exports = {
 				throw new Error(err);
 			}
 		},
+		// Delete a member by id
 		async deleteMember(_, args) {
 			try {
 				const res = await Member.findOneAndDelete({_id: args.id});

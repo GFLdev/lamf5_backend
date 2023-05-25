@@ -8,7 +8,6 @@ const postSchema = new Schema({
 	},
 	content: String,
 	authors: [String],
-	image: String,
 	refs: [String]
 }, {collection: "blogposts"});
 

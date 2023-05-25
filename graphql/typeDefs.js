@@ -1,5 +1,6 @@
 const {gql} = require("apollo-server");
 
+// Defining types, enums, query and mutations
 const typeDefs = gql`
 	enum Position {
 		PRESID
@@ -18,8 +19,8 @@ const typeDefs = gql`
 	type Member {
 		id: ID!
 		name: String!
-		photo: String
 		position: Position!
+		posts: [BlogPost!]
 	}
 
 	type BlogPost {
@@ -28,7 +29,6 @@ const typeDefs = gql`
 		updatedAt: String!
 		content: String!
 		authors: [Member!]!
-		image: String
 		refs: [String!]
 	}
 
@@ -40,7 +40,17 @@ const typeDefs = gql`
 		local: String!
 		date: String!
 		linkToSubscribe: String
-		image: String
+	}
+
+	type Project {
+		id: ID!
+		status: Boolean!
+		content: String!
+	}
+
+	type Partner {
+		id: ID!
+		name: String!
 	}
 
 	type Query {
@@ -50,11 +60,14 @@ const typeDefs = gql`
 		getBlogPost(id: ID!): BlogPost!
 		getAllMembers: [Member!]!
 		getMember(id: ID!): Member!
+		getAllProjects: [Project!]!
+		getProject(id: ID!): Project!
+		getAllPartners: [Partner!]!
+		getPartner(id: ID!): Partner!
 	}
 
 	input CreateMemberInput {
 		name: String!
-		photo: String
 		position: Position!
 	}
 
@@ -67,7 +80,6 @@ const typeDefs = gql`
 		updatedAt: String!
 		authors: [MemberInput!]!
 		content: String!
-		image: String
 		refs: [String!]
 	}
 
@@ -78,20 +90,26 @@ const typeDefs = gql`
 		local: String!
 		date: String!
 		linkToSubscribe: String
-		image: String
+	}
+
+	input CreateProjectInput {
+		status: Boolean!
+		content: String!
+	}
+
+	input CreatePartnerInput {
+		name: String!
 	}
 
 	input UpdateMemberInput {
-		name: String
-		photo: String
-		position: Position
+		name: String!
+		position: Position!
 	}
 
 	input UpdateBlogPostInput {
-		title: String
+		title: String!
 		updatedAt: String
-		content: String
-		image: String
+		content: String!
 		refs: [String!]
 	}
 
@@ -102,19 +120,33 @@ const typeDefs = gql`
 		local: String
 		date: String
 		linkToSubscribe: String
-		image: String	
+	}
+
+	input UpdateProjectInput {
+		status: Boolean!
+		content: String!
+	}
+
+	input UpdatePartnerInput {
+		name: String!
 	}
 
 	type Mutation {
 		createEvent(input: CreateEventInput!): Event!
 		createBlogPost(input: CreateBlogPostInput!): BlogPost!
 		createMember(input: CreateMemberInput!): Member!
+		createProject(input: CreateProjectInput!): Project!
+		createPartner(input: CreatePartnerInput!): Partner!
 		updateEvent(input: UpdateEventInput!, id: ID!): Event!
 		updateBlogPost(input: UpdateBlogPostInput!, id: ID!): BlogPost!
 		updateMember(input: UpdateMemberInput!, id: ID!): Member!
+		updateProject(input: CreateProjectInput!, id: ID!): Project!
+		updatePartner(input: CreatePartnerInput!, id: ID!): Partner!
 		deleteEvent(id: ID!): Event!
 		deleteBlogPost(id: ID!): BlogPost!
 		deleteMember(id: ID!): Member!
+		deleteProject(id: ID!): Project!
+		deletePartner(id: ID!): Partner!
 	}
 `
 

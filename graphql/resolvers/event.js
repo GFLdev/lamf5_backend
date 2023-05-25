@@ -2,6 +2,7 @@ const Event = require("../../models/Event");
 
 module.exports = {
 	Query: {
+		// Get events list
 		async getAllEvents() {
 			try {
 				const events = await Event.find({});
@@ -10,6 +11,7 @@ module.exports = {
 				throw new Error(err);
 			}
 		},
+		// Get one event by id
 		async getEvent(_, args) {
 			try {
 				const event = await Event.findOne({_id: args.id});
@@ -20,6 +22,7 @@ module.exports = {
 		}
 	},
 	Mutation: {
+		// Create new event
 		async createEvent(_, args) {
 			try {
 				const event = args.input;
@@ -29,6 +32,7 @@ module.exports = {
 				throw new Error(err);
 			}
 		},
+		// Update a event by id
 		async updateEvent(_, args) {
 			try {
 				const event = args.input;
@@ -44,6 +48,7 @@ module.exports = {
 				throw new Error(err);
 			}
 		},
+		// Delete a event by id
 		async deleteEvent(_, args) {
 			try {
 				const res = await Event.findOneAndDelete({_id: args.id});
