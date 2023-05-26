@@ -1,18 +1,18 @@
 const {ApolloServer} = require("apollo-server");
 const mongoose = require("mongoose");
-const {MONGODBTEST, PORT} = require("./config.js");
 const {typeDefs} = require("./graphql/typeDefs");
 const resolvers = require("./graphql/resolvers/index");
+require("dotenv").config()
 
 const server = new ApolloServer({
 	typeDefs,
 	resolvers
 });
 
-mongoose.connect(MONGODBTEST)
+mongoose.connect(process.env.DB_URI)
 	.then(() => {
 		console.log("MongoDB connected")
-		return server.listen({port: PORT});
+		return server.listen({port: process.env.PORT});
 	})
 	.then(res => {
 		console.log(`Server running at ${res.url}`);

@@ -1,7 +1,10 @@
-[<img src="./assets/logo.png" alt="LAMF5" width="60%" />](https://lamf5.vercel.app/)
+<div align="center">
 
-<p align="center">
-  <img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=8257E6&labelColor=121214" alt="License">
+  [<img src="./assets/logo.png" alt="LAMF5" width="60%" />](https://lamf5.vercel.app/)
+
+  [<img  src="https://img.shields.io/static/v1?label=license&message=MIT&color=8257E6&labelColor=121214" alt="License">](https://github.com/GabFrancoL/lamf5_backend/blob/main/LICENSE)
+
+</div>
 
 ## Project
 
@@ -19,26 +22,23 @@ Implemented technologies:
 
 Install node dependencies:
 
-    ```bash
-    $ npm install
-    ```
+```bash
+npm install
+```
 
-Configure the database creating a config.js:
+Configure the database with environment variables (.env):
 
-    ```javascript
-    module.exports = {
-      "MONGODBPROD": $prod_url,
-      "MONGODBTEST": $test_url,
-      "PORT": $port_number
-    }
-    ```
+```
+DB_URI = $prod_url      // Database URI
+DB_PORT = $port_number  // API's port
+```
 
 Start the backend:
 
-    ```bash
-    $ npm start
-    ```
+```bash
+npm start
+```
 
 ---
 
-<p align="center">Developed by Gabriel Franco</p>
+<p align="center">Developed and maintained by Gabriel Franco</p>
