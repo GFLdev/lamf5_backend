@@ -18,7 +18,7 @@ Implemented technologies:
 - [Mongoose](https://mongoosejs.com/)
 - [Apollo Server](https://www.apollographql.com)
 
-## Build
+## Test
 
 Install node dependencies:
 

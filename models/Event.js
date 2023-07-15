@@ -10,6 +10,7 @@ const eventSchema = new Schema({
 	local: String,
 	date: String,
 	linkToSubscribe: String,
+	image: String
 }, {collection: "events"});
 
 module.exports = model("Event", eventSchema);

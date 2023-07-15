@@ -20,16 +20,19 @@ const typeDefs = gql`
 		id: ID!
 		name: String!
 		position: Position!
-		posts: [BlogPost!]
+		posts: [Article!]
+		linkedin: String
+		avatar: String
 	}
 
-	type BlogPost {
+	type Article {
 		id: ID!
 		title: String!
 		updatedAt: String!
 		content: String!
 		authors: [Member!]!
 		refs: [String!]
+		image: String
 	}
 
 	type Event {
@@ -40,24 +43,27 @@ const typeDefs = gql`
 		local: String!
 		date: String!
 		linkToSubscribe: String
+		image: String
 	}
 
 	type Project {
 		id: ID!
 		status: Boolean!
 		content: String!
+		image: String
 	}
 
 	type Partner {
 		id: ID!
 		name: String!
+		logo: String
 	}
 
 	type Query {
 		getAllEvents: [Event!]!
 		getEvent(id: ID!): Event!
-		getAllBlogPosts: [BlogPost!]!
-		getBlogPost(id: ID!): BlogPost!
+		getAllArticles: [Article!]!
+		getArticle(id: ID!): Article!
 		getAllMembers: [Member!]!
 		getMember(id: ID!): Member!
 		getAllProjects: [Project!]!
@@ -67,83 +73,91 @@ const typeDefs = gql`
 	}
 
 	input CreateMemberInput {
-		name: String!
-		position: Position!
+		name: String
+		position: Position
+		linkedin: String
+		avatar: String
 	}
 
 	input MemberInput {
 		id: ID!
 	}
 
-	input CreateBlogPostInput {
+	input CreateArticleInput {
 		title: String!
-		updatedAt: String!
 		authors: [MemberInput!]!
 		content: String!
 		refs: [String!]
+		image: String
 	}
 
 	input CreateEventInput {
-		updatedAt: String!
 		title: String!
 		description: String!
 		local: String!
 		date: String!
 		linkToSubscribe: String
+		image: String
 	}
 
 	input CreateProjectInput {
 		status: Boolean!
 		content: String!
+		image: String
 	}
 
 	input CreatePartnerInput {
 		name: String!
+		logo: String
 	}
 
 	input UpdateMemberInput {
-		name: String!
-		position: Position!
+		name: String
+		position: Position
+		linkedin: String
+		avatar: String
 	}
 
-	input UpdateBlogPostInput {
-		title: String!
-		updatedAt: String
-		content: String!
+	input UpdateArticleInput {
+		title: String
+		content: String
 		refs: [String!]
+		image: String
 	}
 
 	input UpdateEventInput {
-		updatedAt: String
 		title: String
 		description: String
 		local: String
 		date: String
 		linkToSubscribe: String
+		image: String
 	}
 
 	input UpdateProjectInput {
-		status: Boolean!
-		content: String!
+		status: Boolean
+		content: String
+		image: String
 	}
 
 	input UpdatePartnerInput {
-		name: String!
+		name: String
+		logo: String
 	}
 
 	type Mutation {
 		createEvent(input: CreateEventInput!): Event!
-		createBlogPost(input: CreateBlogPostInput!): BlogPost!
+		createArticle(input: CreateArticleInput!): Article!
 		createMember(input: CreateMemberInput!): Member!
 		createProject(input: CreateProjectInput!): Project!
 		createPartner(input: CreatePartnerInput!): Partner!
 		updateEvent(input: UpdateEventInput!, id: ID!): Event!
-		updateBlogPost(input: UpdateBlogPostInput!, id: ID!): BlogPost!
+		updateArticle(input: UpdateArticleInput!, id: ID!): Article!
 		updateMember(input: UpdateMemberInput!, id: ID!): Member!
 		updateProject(input: CreateProjectInput!, id: ID!): Project!
 		updatePartner(input: CreatePartnerInput!, id: ID!): Partner!
 		deleteEvent(id: ID!): Event!
-		deleteBlogPost(id: ID!): BlogPost!
+		deleteArticle(id: ID!): Article!
 		deleteMember(id: ID!): Member!
 		deleteProject(id: ID!): Project!
 		deletePartner(id: ID!): Partner!

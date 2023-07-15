@@ -1,6 +1,6 @@
 const {model, Schema} = require("mongoose");
 
-const postSchema = new Schema({
+const articleSchema = new Schema({
 	title: String,
 	updatedAt: {
 		type: String,
@@ -8,7 +8,8 @@ const postSchema = new Schema({
 	},
 	content: String,
 	authors: [String],
-	refs: [String]
-}, {collection: "blogposts"});
+	refs: [String],
+	image: String
+}, {collection: "articles"});
 
-module.exports = model("BlogPost", postSchema);
+module.exports = model("Article", articleSchema);
