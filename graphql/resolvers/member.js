@@ -12,9 +12,9 @@ module.exports = {
 			}
 		},
 		// Get one member by id
-		async getMember(_, args) {
+		async getMember(_, {id}) {
 			try {
-				const member = await Member.findOne({_id: args.id});
+				const member = await Member.findOne({_id: id});
 				return member;
 			} catch (err) {
 				throw new Error(err);
@@ -23,37 +23,37 @@ module.exports = {
 	},
 	Mutation: {
 		// Create a new member
-		async createMember(_, args) {
+		async createMember(_, {input}) {
 			try {
-				const member = args.input;
+				const member = input;
 				const res = await Member.create(member);
 				return res;
-			} catch(err) {
+			} catch (err) {
 				throw new Error(err);
 			}
 		},
 		// Update a member by id
-		async updateMember(_, args) {
+		async updateMember(_, {id, input}) {
 			try {
-				const member = args.input;
+				const member = input;
 				const res = await Member.updateOne(
 					{
-						_id: args.id
+						_id: id
 					},
 					{
 						$set: {...member}
 					});
 				return res;
-			} catch(err) {
+			} catch (err) {
 				throw new Error(err);
 			}
 		},
 		// Delete a member by id
-		async deleteMember(_, args) {
+		async deleteMember(_, {id}) {
 			try {
-				const res = await Member.findOneAndDelete({_id: args.id});
+				const res = await Member.findOneAndDelete({_id: id});
 				return res;
-			} catch(err) {
+			} catch (err) {
 				throw new Error(err);
 			}
 		}

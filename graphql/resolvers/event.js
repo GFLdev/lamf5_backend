@@ -12,9 +12,9 @@ module.exports = {
 			}
 		},
 		// Get one event by id
-		async getEvent(_, args) {
+		async getEvent(_, {id}) {
 			try {
-				const event = await Event.findOne({_id: args.id});
+				const event = await Event.findOne({_id: id});
 				return event;
 			} catch (err) {
 				throw new Error(err);
@@ -23,37 +23,37 @@ module.exports = {
 	},
 	Mutation: {
 		// Create new event
-		async createEvent(_, args) {
+		async createEvent(_, {input}) {
 			try {
-				const event = args.input;
+				const event = input;
 				const res = await Event.create(event);
 				return res;
-			} catch(err) {
+			} catch (err) {
 				throw new Error(err);
 			}
 		},
 		// Update a event by id
-		async updateEvent(_, args) {
+		async updateEvent(_, {id, input}) {
 			try {
-				const event = args.input;
+				const event = input;
 				const res = await Event.updateOne(
 					{
-						_id: args.id
+						_id: id
 					},
 					{
 						$set: {...event}
 					});
 				return res;
-			} catch(err) {
+			} catch (err) {
 				throw new Error(err);
 			}
 		},
 		// Delete a event by id
-		async deleteEvent(_, args) {
+		async deleteEvent(_, {id}) {
 			try {
-				const res = await Event.findOneAndDelete({_id: args.id});
+				const res = await Event.findOneAndDelete({_id: id});
 				return res;
-			} catch(err) {
+			} catch (err) {
 				throw new Error(err);
 			}
 		}

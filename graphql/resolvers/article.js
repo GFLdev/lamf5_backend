@@ -12,9 +12,9 @@ module.exports = {
 			}
 		},
 		// Get one article by id
-		async getArticle(_, args) {
+		async getArticle(_, {id}) {
 			try {
-				const article = await Article.find({_id: args.id});
+				const article = await Article.find({_id: id});
 				return article;
 			} catch (err) {
 				throw new Error(err);
@@ -23,34 +23,34 @@ module.exports = {
 	},
 	Mutation: {
 		// Create a new article
-		async createArticle(_, args) {
-			const article = args.input;
+		async createArticle(_, {input}) {
+			const article = input;
 			const res = await Article.create(article);
 			return res;
 		},
 		// Update an article by id
-		async updateArticle(_, args) {
+		async updateArticle(_, {id, input}) {
 			try {
-				const article = args.input;
+				const article = input;
 				const res = await Article.updateOne(
 					{
-						_id: args.id
+						_id: id
 					},
 					{
 						$set: {...article}
 					});
 				return res;
-			} catch(err) {
+			} catch (err) {
 				throw new Error(err);
 			}
 		},
 		// Delete an article by id
-		async deleteArticle(_, args) {
-			try{
-				const article = await Query.getArticle(args.id);
+		async deleteArticle(_, {id}) {
+			try {
+				const article = await Query.getArticle(id);
 				const res = await Article.deleteOne(article);
 				return res;
-			} catch(err) {
+			} catch (err) {
 				throw new Error(err);
 			}
 		},

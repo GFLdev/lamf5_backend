@@ -29,8 +29,8 @@ npm install
 Configure the database with environment variables (.env):
 
 ```
-DB_URI = $prod_url      // Database URI
-DB_PORT = $port_number  // API's port
+MONGODB_URI = $prod_url      // Database URI
+MONGODB_PORT = $port_number  // API's port
 ```
 
 Start the backend:
