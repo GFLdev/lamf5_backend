@@ -9,6 +9,10 @@ const articleSchema = new Schema({
 	content: String,
 	authors: [String],
 	refs: [String],
+	imageId: {
+		type: Schema.Types.ObjectId,
+		ref: "Image",
+	}
 }, {collection: "articles"});
 
 module.exports = model("Article", articleSchema);

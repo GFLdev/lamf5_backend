@@ -10,6 +10,10 @@ const eventSchema = new Schema({
 	local: String,
 	date: String,
 	linkToSubscribe: String,
+	imageId: {
+		type: Schema.Types.ObjectId,
+		ref: "Image",
+	}
 }, {collection: "events"});
 
 module.exports = model("Event", eventSchema);

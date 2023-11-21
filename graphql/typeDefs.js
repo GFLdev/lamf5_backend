@@ -20,6 +20,7 @@ const typeDefs = gql`
     id: ID!
     name: String!
     data: String!
+		type: String!
   }
 
 	type Member {
@@ -28,7 +29,7 @@ const typeDefs = gql`
 		position: Position!
 		posts: [Article!]
 		linkedin: String
-		avatar: Image
+		avatarId: ID
 	}
 
 	type Article {
@@ -38,7 +39,7 @@ const typeDefs = gql`
 		content: String!
 		authors: [Member!]!
 		refs: [String!]
-		image: Image
+		imageId: ID
 	}
 
 	type Event {
@@ -49,20 +50,20 @@ const typeDefs = gql`
 		local: String!
 		date: String!
 		linkToSubscribe: String
-		image: Image
+		imageId: ID
 	}
 
 	type Project {
 		id: ID!
 		status: Boolean!
 		content: String!
-		image: Image
+		imageId: ID
 	}
 
 	type Partner {
 		id: ID!
 		name: String!
-		logo: Image
+		logoId: ID
 	}
 
 	type Query {
@@ -79,17 +80,17 @@ const typeDefs = gql`
 		getImage(id: ID!): Image
 	}
 
-	input ImageInput {
-    id: ID!
-    name: String!
-    data: String!
+	input CreateImageInput {
+		name: String!
+		data: String!
+		type: String!
 	}
 
 	input CreateMemberInput {
 		name: String
 		position: Position
 		linkedin: String
-		avatar: ImageInput
+		avatarId: ID
 	}
 
 	input MemberInput {
@@ -101,7 +102,7 @@ const typeDefs = gql`
 		authors: [MemberInput!]!
 		content: String!
 		refs: [String!]
-		image: ImageInput
+		imageId: ID
 	}
 
 	input CreateEventInput {
@@ -110,32 +111,38 @@ const typeDefs = gql`
 		local: String!
 		date: String!
 		linkToSubscribe: String
-		image: ImageInput
+		imageId: ID
 	}
 
 	input CreateProjectInput {
 		status: Boolean!
 		content: String!
-		image: ImageInput
+		imageId: ID
 	}
 
 	input CreatePartnerInput {
 		name: String!
-		logo: ImageInput
+		logoId: ID
+	}
+
+	input UpdateImageInput {
+		name: String
+		data: String
+		type: String
 	}
 
 	input UpdateMemberInput {
 		name: String
 		position: Position
 		linkedin: String
-		avatar: ImageInput
+		avatarId: ID
 	}
 
 	input UpdateArticleInput {
 		title: String
 		content: String
 		refs: [String!]
-		image: ImageInput
+		imageId: ID
 	}
 
 	input UpdateEventInput {
@@ -144,26 +151,28 @@ const typeDefs = gql`
 		local: String
 		date: String
 		linkToSubscribe: String
-		image: ImageInput
+		imageId: ID
 	}
 
 	input UpdateProjectInput {
 		status: Boolean
 		content: String
-		image: ImageInput
+		imageId: ID
 	}
 
 	input UpdatePartnerInput {
 		name: String
-		logo: ImageInput
+		logoId: ID
 	}
 
 	type Mutation {
+		createImage(input: CreateImageInput!): Image!
 		createEvent(input: CreateEventInput!): Event!
 		createArticle(input: CreateArticleInput!): Article!
 		createMember(input: CreateMemberInput!): Member!
 		createProject(input: CreateProjectInput!): Project!
 		createPartner(input: CreatePartnerInput!): Partner!
+    updateImage(input: UpdateImageInput, id: ID!): Image!
 		updateEvent(input: UpdateEventInput!, id: ID!): Event!
 		updateArticle(input: UpdateArticleInput!, id: ID!): Article!
 		updateMember(input: UpdateMemberInput!, id: ID!): Member!
@@ -174,9 +183,7 @@ const typeDefs = gql`
 		deleteMember(id: ID!): Member!
 		deleteProject(id: ID!): Project!
 		deletePartner(id: ID!): Partner!
-		createImage(name: String!, data: String!): Image
-    updateImage(id: ID!, name: String, data: String): Image
-    removeImage(id: ID!): Image
+    deleteImage(id: ID!): Image!
 	}
 `
 
